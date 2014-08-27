@@ -1,0 +1,167 @@
+/* ONLOADING */
+$(document).ready(function(){
+	$(".r_w").hide();
+	$('input[id=userid]').first().focus();
+	});
+	
+/* BACKGROUND COLOR EFFECT */
+(function($) {
+ $.fn.MessageBox = function(x) {
+  $("body").css("background-color",x);
+ };
+})(jQuery);
+
+
+
+/* ON SUBMIT CHECK ALL FIELDS ARE FILLED OR NOT*/
+(function($) {
+ $.fn.pageRedirect = function() {
+	if($('#state').val() === 100)
+	{
+	var USER_NAME=$('input[id=userid]').val(); 
+	var PASSWORD=$('input[id=passid]').val(); 
+	var FIRST_NAME=$('input[id=first_name]').val(); 
+	var LAST_NAME=$('input[id=last_name]').val(); 
+	var FILE_NAME=$('input[id=file_name]').val();
+   var GENDER=$("input[name=sex]:checked").val();
+  	var D_O_B=$('select[id=dat1]').val()+"-"+$('select[id=dat2]').val()+"-"+$('select[id=dat3]').val(); 
+   var HOBBIES_LIST="null";	
+	var list=0; 
+	$("input[name=hob]").each(function(){
+    if ($(this).prop('checked')==true){  
+        if(list===0)
+		{
+		HOBBIES_LIST=	$(this).val(); 
+		list=1;
+		}	
+		else
+		{
+			HOBBIES_LIST=HOBBIES_LIST.concat(", "+$(this).val()); 
+		}
+    }
+});
+	var PHONE_NUMBER=$('input[name=phno]').val(); 
+			
+$('#status2').show();
+alert("Form Successfully Submitted with following information click 'ok'");
+alert("Account Information \n\n USERNAME\t:"+USER_NAME+"\n PASSWORD\t:"+ PASSWORD);
+alert("Profile Information \n\n FIRST NAME\t:"+FIRST_NAME+"\n LAST NAME\t:"+LAST_NAME+"\n FILE NAME\t:"+FILE_NAME+"\n GENDER\t\t:"+GENDER+"\n DATE OF BIRTH\t:"+D_O_B+"\n HOBBIES\t\t:"+HOBBIES_LIST+"\n HAVE BEEN TO\t:"+MULTIPLE_SELECT_DATA);
+alert("Contact Information \n\n PHONE NUMBER\t:"+PHONE_NUMBER);
+var answer = confirm ("Press 'OK', if everything is right?")
+if (answer)
+return true;
+else
+return false;
+}
+else
+{
+$('input[name=sex]').siblings("p").empty();
+	if(progress_gender === 0)
+	{
+		progress_gender=1;
+		var val=$('progress').val();
+		val=val+9; $('progress').siblings("p").html(val+"%");
+		$('progress').val(val);
+	}	
+if(progress_isalphanumeric === 0){$('input[id=userid]').siblings("p").text('Please enter username');}
+if(progress_password ===0){$('input[id=passid]').siblings("p").text('Please enter password');}
+if(progress_confirmpassword ===0 && progress_password ===0 ){$('input[id=disab]').siblings("p").text('Please enter password first');}
+else if(progress_confirmpassword ===0){$('input[id=disab]').siblings("p").text('Please enter confirm password');}
+if(progress_alphabetWOS ===0){$('input[id=first_name]').siblings("p").text('Please enter first name');}
+if(progress_alphabetWSD ===0){$('input[id=last_name]').siblings("p").text('Please enter last name');}
+if(progress_file ===0){$('input[id=file_name]').siblings("p").text('Please upload file');}
+if((progress_day+progress_month+progress_year) !==3){$('#dat1').siblings("p").text('Please select date of birth');}
+if(progress_checkbox ===0){$('#hobb').siblings("p:last").text('Please select hobbies');}
+if(progress_multipleselect ===0){$('#sel').siblings("p").text('Please select country');}
+if(progress_bar9 ===0){$('input[name=phno]').siblings("p").text('Please enter phone number');}
+
+if(progress_isalphanumeric === 0)
+{
+$('input[id=userid]').focus();
+}
+else
+{
+if(progress_password ===0)
+{
+$('input[id=passid]').focus();
+}
+else
+{
+if(progress_confirmpassword ===0)
+{
+$('input[id=disab]').focus();
+}
+else
+{
+if(progress_alphabetWOS ===0)
+{
+$('input[id=first_name]').focus();
+}
+else
+{
+if(progress_alphabetWSD ===0)
+{
+$('input[id=last_name]').focus();
+}
+else
+{
+if(progress_file ===0)
+{
+$('input[id=file_name]').focus();
+}
+else
+{
+
+if(progress_day ===0)
+{
+$('#dat1').focus();
+}
+else
+{
+if(progress_month ===0)
+{
+$('#dat2').focus();
+}
+else
+{
+if(progress_year ===0)
+{
+$('#dat3').focus();
+}
+else
+{
+if(progress_checkbox ===0)
+{
+$('input[type="checkbox"]:first').focus();
+}
+else
+{
+if(progress_multipleselect ===0)
+{
+$('#sel').focus();
+}
+else
+{
+if(progress_bar9 ===0)
+{
+$('input[name=phno]').focus();
+}
+}	
+}	
+}	
+}	
+}	
+}	
+}	
+}	
+}	
+}	
+}	
+
+return false;
+}
+};
+})(jQuery);
+
+
+

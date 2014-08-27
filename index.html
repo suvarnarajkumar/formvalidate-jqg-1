@@ -1,0 +1,196 @@
+<!DOCTYPE html>  
+<html lang="en"><head>  
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title>JavaScript Form Validation using a sample registration form</title>  
+<link rel='stylesheet' href='validation.css' type='text/css' />  
+
+<script src="suv/JQuery_install/jquery-2.1.1.min.js"></script>
+<script language="javascript" src="validations.js"></script>
+<script language="javascript" src="validation.js"></script>
+</head>  
+<body bgcolor="lightblue" > 
+
+<!-- STATUS BAR DISPLAY ON TOP -->
+<p id="status1"><b>Welcome!</b> Fill the form correctly. <a id="close" onclick="$('#status1').hide();">X</a></p>
+<p id="status"><b>Well done!</b> You successfully read this important alert message and completed filling form correctly. <a id="close" onclick="$('#status').hide();">X</a></p>
+<p id="status2"><b>Well done!</b> Form submitted successfully. <a id="close" onclick="$('#status2').hide();">X</a></p>
+
+<!-- BACK GROUND COLOR CHANGING PROPERTIES -->
+<div style="top:-20px;position:relative;">
+<input type="radio" value="lightblue" onclick="$().MessageBox(this.value);" checked />
+<input type="radio" value="lightpink" onclick="$().MessageBox(this.value);" />
+<input type="radio" value="lightcyan" onclick="$().MessageBox(this.value);" />
+<input type="radio" value="lightgreen" onclick="$().MessageBox(this.value);" />
+</div>
+<div id="main">
+
+<!-- PROGRESS BAR -->
+<header id="top">
+<progress value="0" max="100" id="state" >
+<div pseudo="-webkit-progress-inner-element">
+<div pseudo="-webkit-progress-bar">
+<div pseudo="-webkit-progress-value" style="width:100%;"></div>
+</div>
+</div>
+</progress>
+<p id="percentage">0%</p>
+</header>
+
+
+<!-- REGISTRATION FORM -->
+<h1>Registration Form</h1>  
+<form name='registration' onSubmit="return $().pageRedirect();" autocomplete="off" method="post">  
+<ul>  
+
+<!-- ACCOUNT INFORMATION-->
+<fieldset>
+<legend>Account Information</legend>
+
+<li><label>Username <span id="u_name">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right1" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong1" class="r_w" /></div></label></li>
+<li> <span id="view"><img src="icons/user.png" alt="U_N" /></span><input type="text" id="userid" placeholder="User Name" size="12" onchange=" $().isAlphanumeric(this,'#passid','USER NAME','#u_name','#right1','#wrong1','#status',9);" /><p></p></li>  
+<li><label>Password <span id="pwd">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right2" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong2" class="r_w" /></div></label></li>  
+<li><span id="view"><img src="icons/lock.png" alt="Pwd" /></span><input type="password" id="passid" placeholder="Password" onchange="$().passwordValidation(this,'#disab','#first_name','PASSWORD','CONFIRM PASSWORD','#pwd','#con_pwd','#right2','#right3','#wrong2','#wrong3','#status',9);"/><p></p></li> 
+<li><label>Confirm Pwd <span id="con_pwd">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right3" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong3" class="r_w" /></div></label></li>  
+<li><span id="view"><img src="icons/lock_go.png" alt="C_Pwd" /></span><input type="password" id="disab" disabled placeholder="Confirm Password" onchange="$().confirmPasswordValidation(this,'#passid','#first_name','CONFIRM_PASSWORD','#con_pwd','#right3','#wrong3','#status',9);"/><p></p></li>
+</fieldset> 
+
+
+
+<!-- PROFILE INFORMATION -->
+<fieldset>
+<legend>Profile Information</legend>
+
+<li><label>First Name <span id="first_n">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right4" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong4" class="r_w" /></div></label></li>  
+<li><span id="view"><img src="icons/user_suit.png" alt="F_UN" /></span><input type="text" id="first_name" placeholder="First Name" onchange="$().alphabetWOSValidation(this,'#last_name','FIRST NAME','#first_n','#right4','#wrong4','#status',9);"/><p></p></li>  
+<li><label>Last Name <span id="last_n">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right5" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong5" class="r_w" /></div></label></li>  
+<li><span id="view"><img src="icons/user_gray.png" alt="L_UN" /></span><input type="text" id="last_name" placeholder="Last Name" onchange="$().alphabetWSDValidation(this,'#file_name','LAST NAME','#last_n','#right5','#wrong5','#status',9)"/><p></p></li>  
+<li><label>Profile Pic <span id="file_n">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right6" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong6" class="r_w" /></div></label></li>
+<li><span id="view"><img src="icons/attach.png" alt="pic" /></span><input type="file" id="file_name" onchange="$().fileValidation(this,'#male','FILE','jpg,png,gif','#file_n','#right6','#wrong6','#status',9)"><p></p></li>  
+<li><label>Gender <span id="gender">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right7" /></div></label></li>
+<input type="radio" name="sex" id="male" value="Male" checked onclick="$().genderValidation(this,'#dat1','#status')" onblur="$().genderValidation(this,'#dat1','#status',9)"/><span id="sex_gender" ><span id="view1"><img src="icons/user_red.png" alt="male_pic" /></span>Male</span>
+<input type="radio" name="sex" id="female" value="Female" onclick="$().genderValidation(this,'#dat1','#status',9)"/><span id="sex_gender" ><span id="view1"><img src="icons/user_female.png" alt="female_pic" /></span>Female</span> 
+<p style="color:blue;">By default "MALE" is selected.</p>
+<li><label>Date of Birth <span id="db">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right8" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong8" class="r_w" /></div></label></li>
+<li><img src="icons/date.png" alt="DoB" /><select id="dat1" onchange="$().dateValidation(this,'#dat2','#dat3','#hob1','DAY','MONTH','YEAR','#db','#right8','#wrong8','#status',2)">  
+<option style="text-align:center; " value="default" selected="" >DAY</option>  
+<option value="01" >01</option>  
+<option value="02" >02</option>  
+<option value="03" >03</option>  
+<option value="04" >04</option>  
+<option value="05" >05</option>  
+<option value="06" >06</option>  
+<option value="07" >07</option>  
+<option value="08" >08</option>  
+<option value="09" >09</option>  
+<option value="10" >10</option>  
+<option value="11" >11</option>  
+<option value="12" >12</option>  
+<option value="13" >13</option>  
+<option value="14" >14</option>  
+<option value="15" >15</option>  
+<option value="16" >16</option>  
+<option value="17" >17</option>  
+<option value="18" >18</option>  
+<option value="19" >19</option>  
+<option value="20" >20</option>  
+<option value="21" >21</option>  
+<option value="22" >22</option>  
+<option value="23" >23</option>  
+<option value="24" >24</option>  
+<option value="25" >25</option>  
+<option value="26" >26</option>  
+<option value="27" >27</option>  
+<option value="28" >28</option>  
+<option value="29" >29</option>  
+<option value="30" >30</option>  
+<option value="31" >31</option>  
+</select>
+<select  id="dat2" onchange="$().dateValidation(this,'#dat1','#dat3','#hob1','MONTH','DAY','YEAR','#db','#right8','#wrong8','#status',3)">  
+<option style="text-align:center; " value="default" selected="" > MONTH </option>  
+<option value="jan" >Jan</option>  
+<option value="Feb" >Feb</option>  
+<option value="Mar" >Mar</option>  
+<option value="Apl" >Apl</option>  
+<option value="May" >May</option>
+<option value="Jun" >Jun</option>  
+<option value="Jul" >Jul</option>  
+<option value="Aug" >Aug</option>  
+<option value="Sep" >Sep</option>  
+<option value="Oct" >Oct</option>  
+<option value="Nov" >Nov</option>  
+<option value="Dec" >Dec</option>    
+</select>
+<select  id="dat3" onchange="$().dateValidation(this,'#dat1','#dat2','#hob1','YEAR','DAY','MONTH','#db','#right8','#wrong8','#status',5)">  
+<option style="text-align:center; " value="default" selected="" > YEAR </option>  
+<option value="1991" >1991</option>
+<option value="1992" >1992</option>
+<option value="1993" >1993</option>
+<option value="1994" >1994</option>
+<option value="1995" >1995</option>
+<option value="1996" >1996</option>
+<option value="1997" >1997</option>
+<option value="1998" >1998</option>
+<option value="1999" >1999</option>  
+<option value="2000" >2000</option>  
+<option value="2001" >2001</option>  
+<option value="2002" >2002</option>  
+<option value="2003" >2003</option>  
+<option value="2004" >2004</option>  
+<option value="2005" >2005</option>  
+<option value="2006" >2006</option>  
+<option value="2007" >2007</option>  
+<option value="2008" >2008</option>  
+<option value="2009" >2009</option>  
+<option value="2010" >2010</option>  
+<option value="2011" >2011</option>  
+<option value="2012" >2012</option>  
+<option value="2013" >2013</option>  
+<option value="2014" >2014</option>  
+<option value="2015" >2015</option>  
+<option value="2016" >2016</option>  
+<option value="2017" >2017</option>  
+<option value="2018" >2018</option>  
+</select><p></p></li>  
+
+<li><label>Hobbies <span id="hobby">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right9" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong9" class="r_w" /></div></label></li>
+<div id="hobb">
+<div id="hobb1">
+<span style="float:left;padding-right:20px"><input type="checkbox" id="hob1" name="hob" value="Painting" onchange="$().checkBoxValidations(this,'#hobb','hobbies or atleast others','#hobby','#right9','#wrong9','#status',9)" /><span id="hobbies" ><span id="view1"><img src="icons/palette.png" alt="pic" /></span>Painting</span>
+<br /><input type="checkbox" name="hob" value="Singing" onchange="$().checkBoxValidations(this,'#hobb','hobbies or atleast others','#hobby','#right9','#wrong9','#status',9)" /><span id="hobbies" ><span id="view1"><img src="icons/mic.png" alt="pic" /></span>Singing</span> 
+<br /><input type="checkbox" name="hob" value="Traveling" onchange="$().checkBoxValidations(this,'#hobb','hobbies or atleast others','#hobby','#right9','#wrong9','#status',9)" /><span id="hobbies" ><span id="view1"><img src="icons/bus.png" alt="pic" /></span>Traveling</span> 
+</span><span style="float:right;"></div>
+<div id="hobb2">
+<input type="checkbox" name="hob" value="Dancing" onchange="$().checkBoxValidations(this,'#hobb','hobbies or atleast others','#hobby','#right9','#wrong9','#status',9)" /><span id="hobbies" ><span id="view1"><img src="icons/dance.png" alt="pic" /></span>Dancing</span> 
+<br /><input type="checkbox" name="hob" value="Gardening" onchange="$().checkBoxValidations(this,'#hobb','hobbies or atleast others','#hobby','#right9','#wrong9','#status',9)" /><span id="hobbies" ><span id="view1"><img src="icons/tree.png" alt="pic" /></span>Gardening</span> 
+<br /><input type="checkbox" name="hob" value="Others" onchange="$().checkBoxValidations(this,'#hobb','hobbies or atleast others','#hobby','#right9','#wrong9','#status',9)" /><span id="hobbies" ><span id="view1"><img src="icons/heart.png" alt="pic" /></span>Others</span> 
+</span></div></div>
+<br /><p></p>
+
+<li><label>Have been to <span id="cnty">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right10" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong10" class="r_w" /></div></label></li>
+<li><select   multiple id="sel" name="country" onchange="$().multipleSelectValidation('#sel','Select atleast your current stay-in country','#cnty','#right10','#wrong10','#status',9)" onblur="document.forms['registration']['phno'].focus();">  
+<option style="background-image:url('icons/flag_purple.png') ;"  value="default" selected="" >(Select atleast country your stay-in)</option>  
+<option style="background-image:url('png/au.png') ;" value="Australia" >Australia</option>  
+<option style="background-image:url('png/ca.png') ;" value="Canada" >Canada</option>  
+<option style="background-image:url('png/in.png') ;" value="India" >India</option>  
+<option style="background-image:url('png/ru.png') ;" value="Russia" >Russia</option>  
+<option style="background-image:url('png/us.png') ;" value="USA" >USA</option>  
+<option style="background-image:url('png/iq.png') ;" value="Iraq" >Iraq</option>  
+<option style="background-image:url('png/ie.png') ;" value="Ireland" >Ireland</option>  
+</select><p></p></li>  
+</fieldset>
+
+<!-- CONTACT INFORMATION -->
+<fieldset>
+<legend>Contact Information</legend>
+
+<li><label>Phone <span id="phone">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right11" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong11" class="r_w" /></div></label></li>  
+<li><span id="view"><img src="icons/phone.png" alt="phone" /></span><input type="text" name="phno"  placeholder="+91 (990)-824-7888" onchange="$().phone_validations(this,'PHONE NUMBER','#phone','#right11','#wrong11','#status',9)"/><p></p></li>  
+
+<li><input type="submit" name="submit" value="Submit" /></li>  
+</fieldset>
+</ul>  
+</form> 
+</div> 
+</body>  
+</html> 

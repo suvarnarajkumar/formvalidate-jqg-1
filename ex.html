@@ -1,0 +1,53 @@
+<!DOCTYPE html>  
+<html lang="en"><head>  
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title>JavaScript Form Validation using a sample registration form</title>  
+<script src="suv/JQuery_install/jquery-2.1.1.min.js"></script>
+<script language="javascript" src="validations.js"></script>
+<script type="text/javascript" >
+$(document).ready(function(){
+	$(".r_w").hide();
+	$('input[id=userid]').first().focus();
+	});
+	
+</script>
+</head>  
+<body bgcolor="lightblue" > 
+
+<!-- PROGRESS BAR -->
+<header id="top">
+<progress value="0" max="100" id="state" >
+<div pseudo="-webkit-progress-inner-element">
+<div pseudo="-webkit-progress-bar">
+<div pseudo="-webkit-progress-value" style="width:100%;"></div>
+</div>
+</div>
+</progress>
+<p id="percentage">0%</p>
+</header>
+
+
+<!-- REGISTRATION FORM -->
+<h1>Registration Form</h1>  
+<form name='registration' onSubmit="window.location.reload();" autocomplete="off" method="post">  
+<ul>  
+
+<!-- ACCOUNT INFORMATION-->
+<label>Username <span id="u_name">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right1" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong1" class="r_w" /></div></label>
+ <span id="view"><img src="icons/user.png" alt="U_N" /></span><input type="text" id="userid" placeholder="User Name" size="12" onchange=" $().isAlphanumeric(this,'#passid','USER NAME','#u_name','#right1','#wrong1','#status',25);" /><p></p>  
+<label>Password <span id="pwd">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right2" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong2" class="r_w" /></div></label>  
+<span id="view"><img src="icons/lock.png" alt="Pwd" /></span><input type="password" id="passid" placeholder="Password" onchange="$().passwordValidation(this,'#disab','input[name=phno]','PASSWORD','CONFIRM PASSWORD','#pwd','#con_pwd','#right2','#right3','#wrong2','#wrong3','#status',25);"/><p></p> 
+<label>Confirm Pwd <span id="con_pwd">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right3" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong3" class="r_w" /></div></label>  
+<span id="view"><img src="icons/lock_go.png" alt="C_Pwd" /></span><input type="password" id="disab" disabled placeholder="Confirm Password" onchange="$().confirmPasswordValidation(this,'#passid','input[name=phno]','CONFIRM_PASSWORD','#con_pwd','#right3','#wrong3','#status',25);"/><p></p>
+
+<label>Phone <span id="phone">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right11" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong11" class="r_w" /></div></label>  
+<span id="view"><img src="icons/phone.png" alt="phone" /></span><input type="text" name="phno"  placeholder="+91 (990)-824-7888" onchange="$().phone_validations(this,'PHONE NUMBER','#phone','#right11','#wrong11','#status',25)"/><p></p>  
+
+<input type="submit" name="submit" value="Submit" />  
+</fieldset>
+</ul>  
+</form> 
+
+</body>  
+</html> 
